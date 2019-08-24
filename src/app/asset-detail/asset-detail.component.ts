@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { PredictiveApiService } from "../predictive-api.service";
 import * as Highcharts from "highcharts";
@@ -35,17 +35,17 @@ export class AssetDetailComponent implements OnInit {
       );
     }, 30000);
     // Getting prediction data
-    setInterval(() => {
-      this.asset_id = this.route.snapshot.paramMap.get('asset_id');
-      this.assetDetail.getPredictionData(this.asset_id).subscribe(
-        res => this.prediction(res)
-      );
-    }, 10000);
+    // setInterval(() => {
+    //   this.asset_id = this.route.snapshot.paramMap.get('asset_id');
+    //   this.assetDetail.getPredictionData(this.asset_id).subscribe(
+    //     res => this.prediction(res)
+    //   );
+    // }, 10000);
     // console.log(this.result);
 
-    // setInterval(() => {
-    //   this.prediction = "Vibration high detected";
-    // }, 5000);
+    setInterval(() => {
+      this.prediction = "Vibration high detected";
+    }, 5000);
   }
 
   open(content) {

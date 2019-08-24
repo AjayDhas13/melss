@@ -1,10 +1,12 @@
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong (click)="open(content)">{{prediction}}dsada</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<div (click)="open(content)" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{prediction}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (close)="close(alert)">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<ng-template #content let-modal>  
+
+
+<ng-template #content let-modal> 
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Do you want MELSS to Initiate Workflows?</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">

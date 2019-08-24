@@ -27,6 +27,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   providers: [
     PredictiveApiService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent, 
+    AssetDetailComponent
+  ]
 })
 export class AppModule { }
