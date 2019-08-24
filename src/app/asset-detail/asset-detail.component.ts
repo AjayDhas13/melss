@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { PredictiveApiService } from "../predictive-api.service";
 import * as Highcharts from "highcharts";
 import { Chart } from "angular-highcharts";
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-asset-detail',
@@ -15,7 +16,8 @@ export class AssetDetailComponent implements OnInit {
   result;
   chart: Chart;
   prediction;
-  constructor(private route: ActivatedRoute, private assetDetail: PredictiveApiService) { 
+  closeResult: string;
+  constructor(private route: ActivatedRoute, private assetDetail: PredictiveApiService, private modalService: NgbModal) { 
     
   }
 
@@ -31,14 +33,37 @@ export class AssetDetailComponent implements OnInit {
       this.assetDetail.getAssetRefreshData(this.asset_id).subscribe(
         res => this.refreshChart(res)
       );
-    }, 5000);
+    }, 30000);
     // Getting prediction data
-    this.result = setInterval(() => {
+    setInterval(() => {
       this.asset_id = this.route.snapshot.paramMap.get('asset_id');
       this.assetDetail.getPredictionData(this.asset_id).subscribe(
         res => this.prediction(res)
       );
-    }, 5000);
+    }, 10000);
+    // console.log(this.result);
+
+    // setInterval(() => {
+    //   this.prediction = "Vibration high detected";
+    // }, 5000);
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'exampleModalCenterTitle'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   refreshChart(refresh_data){
@@ -149,7 +174,7 @@ export class AssetDetailComponent implements OnInit {
       }]
     });
     this.chart = chart;
-    chart.ref$.subscribe(console.log);
+    // chart.ref$.subscribe(console.log);
   }
 
 }
