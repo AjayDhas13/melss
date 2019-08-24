@@ -51,4 +51,18 @@ export class PredictiveApiService {
 
     return this.http.post(`${this.uri}/asset_data`, data, {headers});
   }
+
+  getPredictionData(asset_id){
+    const data = {
+      "action": "prediction",
+      "asset_id": asset_id
+    }
+
+    const headers = new HttpHeaders({
+      "x-api-key": "i3vAKBMb539q7Euzc3VlO6erN3CZfUcK3GE73JBJ",
+      "Content-Type": "application/json",
+    });
+
+    return this.http.post(`${this.uri}/prediction`, data, {headers});
+  }
 }

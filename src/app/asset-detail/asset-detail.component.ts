@@ -11,35 +11,32 @@ import { Chart } from "angular-highcharts";
 })
 export class AssetDetailComponent implements OnInit {
 
-  // Highcharts: typeof Highcharts = Highcharts; // required
-  // chartConstructor: string = 'chart'; // optional string, defaults to 'chart'
-  // chartOptions: Highcharts.Options = {
-  //   series: [{
-  //     data: [{x: 1566496781000, y: 3415.75},{x: 1566496781000, y: 3415.75}],
-  //     type: 'line'
-  //   }]
-  // }; // required
-  // // chartCallback: Highcharts.ChartCallbackFunction = function (chart) { ... } // optional function, defaults to null
-  // updateFlag: boolean = false; // optional boolean
-  // oneToOneFlag: boolean = true; // optional boolean, defaults to false
-  // runOutsideAngular: boolean = false; // optional boolean, defaults to false
-
   asset_id: string;
   result;
   chart: Chart;
+  prediction;
   constructor(private route: ActivatedRoute, private assetDetail: PredictiveApiService) { 
     
   }
 
   ngOnInit() {
+    //Initial chart draw
     this.asset_id = this.route.snapshot.paramMap.get('asset_id');
     this.assetDetail.getAssetDetail(this.asset_id).subscribe(
       res => this.init(res)
     );
-    this.result = setInterval(() => {
+    //Refresh chart every 5 seconds
+    setInterval(() => {
       this.asset_id = this.route.snapshot.paramMap.get('asset_id');
       this.assetDetail.getAssetRefreshData(this.asset_id).subscribe(
         res => this.refreshChart(res)
+      );
+    }, 5000);
+    // Getting prediction data
+    this.result = setInterval(() => {
+      this.asset_id = this.route.snapshot.paramMap.get('asset_id');
+      this.assetDetail.getPredictionData(this.asset_id).subscribe(
+        res => this.prediction(res)
       );
     }, 5000);
   }
