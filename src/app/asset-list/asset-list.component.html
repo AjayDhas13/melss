@@ -3,12 +3,18 @@
     <!-- <div class="form-group" role="group"> -->
         <!-- <button type="button" class="btn btn-lg btn-outline-secondary rounded-0 form-control" *ngFor="let item of asset_list.data" [routerLink]="['/asset', item.asset_id]">{{item.asset_name}}</button> -->
     <!-- </div> -->
-    <div class="media btn-margin-5 btn-warning" *ngFor="let item of asset_list.data" [routerLink]="['/asset', item.asset_id]">
-      <!-- <img ng-src="assets/electric-arc-furnace.jpg" class="mr-3"> -->
+    <mat-card *ngFor="let item of asset_list.data" style="margin-bottom: 10px;">
+      <mat-card-header>        
+        <mat-card-title>{{item.asset_name}}</mat-card-title>
+        <mat-card-subtitle>{{item.asset_description}}</mat-card-subtitle>
+      </mat-card-header>
+      <button mat-raised-button style="width:100%" color="accent" [routerLink]="['/asset', item.asset_id]">View Details</button>
+    </mat-card>
+    <!-- <div class="media btn-margin-5 btn-warning" *ngFor="let item of asset_list.data" [routerLink]="['/asset', item.asset_id]">
       <svg class="bd-placeholder-img mr-3" width="64" height="64" focusable="false" role="img" aria-label="Placeholder: 64x64"><title>{{item.asset_name}}</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em"></text></svg>
       <div class="media-body">
         <h5 class="mt-0">{{item.asset_name}}</h5>
         {{item.asset_description}}
       </div>
-    </div>
+    </div> -->
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PredictiveApiService } from "../predictive-api.service";
+import { MatButtonModule, MatCardModule, MatIconModule, MatListModule } from '@angular/material';
 
 @Component({
   selector: 'app-asset-list',

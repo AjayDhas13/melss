@@ -10,6 +10,7 @@ import { AssetDetailComponent } from './asset-detail/asset-detail.component';
 
 import { ChartModule } from "angular-highcharts";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule, MatCardModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     ChartModule,
-    NgbModule
+    NgbModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     PredictiveApiService
