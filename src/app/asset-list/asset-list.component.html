@@ -4,7 +4,9 @@
         <!-- <button type="button" class="btn btn-lg btn-outline-secondary rounded-0 form-control" *ngFor="let item of asset_list.data" [routerLink]="['/asset', item.asset_id]">{{item.asset_name}}</button> -->
     <!-- </div> -->
     <mat-card *ngFor="let item of asset_list.data" style="margin-bottom: 10px;">
-      <mat-card-header>        
+      <mat-card-header>  
+        <div mat-card-avatar class="example-header-image" style="background-image: url(https://material.angular.io/assets/img/examples/shiba1.jpg);
+    background-size: cover;margin-top:5px;"></div>      
         <mat-card-title>{{item.asset_name}}</mat-card-title>
         <mat-card-subtitle>{{item.asset_description}}</mat-card-subtitle>
       </mat-card-header>
